@@ -1,1 +1,336 @@
-Hello World
+﻿ <!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	
+	 <!-- Deisgned by
+	
+        
+    88888888888 888                                  Y88b   d88P d8b 888           8888888888                                  
+        888     888                                   Y88b d88P  Y8P 888           888                                         
+        888     888                                    Y88o88P       888           888                                         
+        888     88888b.   8888b.  88888b.d88b.          Y888P    888 888  888      8888888  .d88b.   .d88b.  88888b.   .d88b.  
+        888     888 "88b     "88b 888 "888 "88b          888     888 888 .88P      888     d88""88b d88""88b 888 "88b d88P"88b 
+        888     888  888 .d888888 888  888  888          888     888 888888K       888     888  888 888  888 888  888 888  888 
+        888     888  888 888  888 888  888  888          888     888 888 "88b      888     Y88..88P Y88..88P 888  888 Y88b 888 
+        888     888  888 "Y888888 888  888  888          888     888 888  888      888      "Y88P"   "Y88P"  888  888  "Y88888 
+                                                                                                                           888 
+                                                                                                                      Y8b d88P 
+                                                                                                                       "Y88P"  
+
+    # https://zfoong.github.io/
+
+	-->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Simple and affordable web development services.">
+	<meta name="keywords" content="web design, website design, building website, development, affordable, cheap, fast, quick">
+	<meta name="robots" content="index,follow">
+	<meta name="author" content="Q11 - http://q11.website" />
+	<title>Q11 - Web Design</title>
+	
+	<meta property="og:title" content="Q11 - Web Design Solution" />
+	<meta property="og:description" content="We'll build a website for you." />
+	<meta property="og:type" content="article" />
+	<meta property="og:site_name" content="Q11" />
+	<meta property="og:image" content="graphic/og.png" />
+	
+	<link rel="icon" type="image/png" href="graphic/favicon.ico" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">	
+	<link rel="stylesheet" href="css/index.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="js/particles.min.js"></script>
+	
+</head>
+
+<script>
+$( document ).ready(function() {
+	//Add particle js 
+	particlesJS.load('particles-js', './inc/particlesjs-config.json', function() {
+	  console.log('callback - particles.js config loaded');
+	});
+	
+	// Add scrollspy to <body>
+	$('body').scrollspy({target: ".navbar", offset: 50});   
+	
+	// Add smooth scrolling on all links inside the navbar
+	$(".navbar a").on('click', function(event) {
+		if (this.hash !== "") {
+		  event.preventDefault();
+		  var hash = this.hash;
+		  $('html, body').animate({
+			scrollTop: $(hash).offset().top
+		  }, 800, function(){
+			window.location.hash = hash;
+		  });
+		}
+	});
+  
+	$(window).scroll(function() {
+
+		var scrollTop = $(this).scrollTop();
+
+		$('section').each(function() {
+			var topDistance = $(this).offset().top;
+			
+			if ( (topDistance - $(this).innerHeight()/2) < scrollTop ) {
+				$('.nav-link').removeClass('active');
+				$(".nav-link[href*='"+$(this).attr('id')+"']").addClass("active");
+			}
+		});
+	});
+	
+	//animate when section in view
+	function isElementInViewport(elem) {
+		var $elem = $(elem);
+
+		var scrollElem = ((navigator.userAgent.toLowerCase().indexOf('webkit') != -1) ? 'body' : 'html');
+		var viewportTop = $(scrollElem).scrollTop();
+		var viewportBottom = viewportTop + $(window).height();
+
+		var elemTop = Math.round( $elem.offset().top );
+		var elemBottom = elemTop + $elem.height();
+
+		return ((elemTop < viewportBottom) || (elemBottom > viewportTop));
+	}
+
+	function checkAnimation() {
+		var $elem = $('.animation-section-inview');
+
+		if ($elem.hasClass('anim-started')) return;
+
+		if (isElementInViewport($elem)) {
+			$elem.addClass('anim-started');
+		}
+	}
+
+	$(window).scroll(function(){
+		checkAnimation();
+	});
+	//END OF animate when section in view
+
+});
+</script>
+	
+<body>
+	<div id="wrapper">
+		<nav id="side-nav-menu" class="navbar navbar-light">
+			<ul class="nav navbar-nav ">
+				<li class="nav-item "><a id="link1" class="nav-link active" href="#banner-section">Intro</a></li>
+				<li class="nav-item"><a id="link2" class="nav-link" href="#summary-section">Career Sumary</a></li>
+                <li class="nav-item"><a id="link3" class="nav-link" href="#education-section">Education</a></li>
+                <li class="nav-item"><a id="link4" class="nav-link" href="#skill-section">Skill</a></li>
+				<li class="nav-item"><a id="link5" class="nav-link" href="#repo-section">Github Repo</a></li>
+				<li class="nav-item"><a id="link6" class="nav-link" href="#contact-section">Contact</a></li>
+			</ul>
+		</nav>
+		<section id="banner-section" class="container-fluid">
+			<div class="bg" id="particles-js"></div>
+			<div class="banner-title">
+				<h1>
+					<span class="q11-standard-orange">Q11</span> Web Design Solution
+				</h1>
+			</div>
+		</section>
+		<section id="summary-section" class="container-fluid standard-vertical-padding">
+			<h3>
+				Career Summary
+			</h3>
+			<div class="title-devider"></div>
+			<div class="container">
+				<div class="row animation-section-inview">
+					<div class="col-sm-4">
+						<img src="graphic/icondesign.png">
+						<h5>Low-cost</h5>
+						<p>
+							We provide affordable web design services that cost lower than the average web design fee while making sure our product meets your requirements.
+						</p>
+					</div>
+					<div class="col-sm-4">
+						<img src="graphic/iconui.png">
+						<h5>Multi-platform</h5>
+						<p>
+							We will make sure your website responds and works on various browsers, tablets and smartphones to satisfy your viewers using different platforms. 
+						</p>
+					</div>
+					<div class="col-sm-4">
+						<img src="graphic/iconcode.png">
+						<h5>Services</h5>
+						<p>
+							We provide services like web design & development, hosting services, domain name registration and website maintenance to businesses, professionals, and individuals.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="repo-section" class="container-fluid standard-vertical-padding">
+			<div class="parallel-bg-div" style="background-image: url('graphic/parallel-bg-1.png');transform: translateZ(-1px) scale(1.1);z-index:-1;"></div>
+			<div class="parallel-bg-div " style="background-image: url('graphic/parallel-bg-2.png');"></div>
+			<h3>
+				Sample Designs
+			</h3>
+			<p class="q11-standard-gray">
+				We are currently building our portfolio, hire us now to receive a startup-discount !
+			</p>
+			<div class="title-devider"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class=" img-thumbnail-container">
+							<img src="graphic/SAMPLE_001.png" class="sample-thumbnail img-thumbnail">
+						</div>
+						<p>
+							<h6 style="color: #ffb900">Castle Hochosterwitz</h6>
+							Simple, minimalistic, monochrome design. Includes a gallery to display images.
+						</p>
+					</div>
+					<div class="col-sm-4">
+						<div class=" img-thumbnail-container">
+							<img src="graphic/SAMPLE_002.png" class="sample-thumbnail img-thumbnail">
+						</div>
+						<p>
+							<h6 style="color: #ffb900">Bakeree</h6>
+							Colourful and lively website. Includes bright, vivid, sassy designs for the homepage and menu.
+						</p>
+					</div>
+					<div class="col-sm-4">
+						<div class=" img-thumbnail-container">
+							<img src="graphic/SAMPLE_003.png" class="sample-thumbnail img-thumbnail">
+						</div>
+						<p>
+							<h6 style="color: #ffb900">Vulpes Lagopuss</h6>
+							Soft-coloured informative website. Includes forms to allow visitors to contact you.
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4 ">
+						<div class=" img-thumbnail-container">
+							<img src="graphic/SAMPLE_004.png" class="sample-thumbnail img-thumbnail">
+						</div>
+						<p>
+							<h6 style="color: #ffb900">Tranquility</h6>
+							A website designed with simple and clean layout. Minimal text and calming images.
+						</p>
+					</div>
+					<div class="col-sm-4">
+						<div class=" img-thumbnail-container">
+							<img src="graphic/SAMPLE_006.png" class="sample-thumbnail img-thumbnail">
+						</div>
+						<p>
+							<h6 style="color: #ffb900">Face Brush HHT</h6>
+							An online catalogue for products and order, suitable for displaying various product.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="contact-section" class="container-fluid standard-vertical-padding">
+			<h3>Want to make a website with us?</h3>
+			<p class="q11-standard-gray">
+				Fill in the form below and we'll get back to  you as soon as possible.
+			</p>
+			<div class="title-devider"></div>
+			<form id="contact-us-form">
+				<h5>YOUR INFO</h5>
+				<div class="form-group ">
+					<div class="col-sm-6 offset-sm-3 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+						<input type="text" class="form-control" id="input-name" placeholder="Name" required>
+					</div>
+				</div>
+				<div class="form-group ">
+					<div class="col-sm-6 offset-sm-3 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+						<input type="email" class="form-control" id="input-email" placeholder="Email" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-6 offset-sm-3 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+						<input type="text" class="form-control" id="input-phone" placeholder="Contact Number" required>
+					</div>
+				</div>
+				<div class="form-group ">
+					<div class="col-sm-6 offset-sm-3 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+						<input type="text" class="form-control" id="input-website" placeholder="Existing Website ( optional )">
+					</div>
+				</div>
+				<h5>PROJECT DETAILS</h5>
+				<div class="form-group">
+					<div class="col-sm-6 offset-sm-3 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+						<select class="selectpicker form-control" id="input-service-type" data-live-search="true" title="Service Type" required>
+						<option value="" disabled selected>Type of Service</option>
+							<option>One Page Website</option>
+							<option>Company Website</option>
+							<option>Website Makeover</option>
+							<option>Other</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-6 offset-sm-3 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+						<select class="selectpicker form-control" id="input-deadline" data-live-search="true" title="Ideal Completion Date" required>
+						<option value="" disabled selected>Ideal Completion Date</option>
+							<option>2 Weeks</option>
+							<option>1 Month</option>
+							<option>2 Months</option>
+							<option>3 Months</option>
+							<option>6 Months</option>
+							<option>1 Year</option>
+							<option>Not Sure</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-6 offset-sm-3 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+						<textarea class="form-control" rows="5" placeholder="Additional Details" id="input-project-detail" required></textarea>
+					</div>
+				</div>
+					<button type="submit" class="btn btn-default" id="contact-us-submit-btn">Send</button>
+			</form>
+			<div id="div-thankyou-contact">
+				<h3>Thanks.</h3>
+				<p class="q11-standard-gray">Your email has been successfully sent and we appreciate you contacting us. We'll be in touch soon.</p>
+			</div>
+		</section>
+		<div id="footer">
+			<p class="copyright-p">Copyright © 2018 <span style="color:#ffb900;">Q11</span></p>
+		</div>
+	</div>
+</body>
+
+<script>
+var lFollowX = 0,
+    lFollowY = 0,
+    x = 0,
+    y = 0,
+    friction = 1 / 30;
+
+function moveBackground() {
+  x += (lFollowX - x) * friction;
+  y += (lFollowY - y) * friction;
+  
+  translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.1)';
+
+  $('.bg').css({
+    '-webit-transform': translate,
+    '-moz-transform': translate,
+    'transform': translate
+  });
+
+  window.requestAnimationFrame(moveBackground);
+}
+
+$(window).on('mousemove click', function(e) {
+
+  var lMouseX = Math.max(-100, Math.min(100, $(window).width() / 2 - e.clientX));
+  var lMouseY = Math.max(-100, Math.min(100, $(window).height() / 2 - e.clientY));
+  lFollowX = (20 * lMouseX) / 100; // 100 : 12 = lMouxeX : lFollow
+  lFollowY = (10 * lMouseY) / 100;
+
+});
+
+moveBackground();
+</script>
+
+</html>
