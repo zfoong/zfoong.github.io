@@ -113,14 +113,13 @@ section > h3{
 
 .banner-title{
 	color:white;
-
 	margin: 0 auto;
 	padding: 0;
     display: inline-block;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-
+    width: 750px;
 	transform: translate3d(-50%, -50%, 0);
 	animation: fadeIn-title 1s ease-in-out;
 }
@@ -151,6 +150,7 @@ section > h3{
     object-fit: cover;
     float: left;
     margin-right: 20px;
+    margin-top: 15px;
 }
 
 #summary-section{
@@ -380,7 +380,21 @@ a:active {
 	.img-thumbnail-container{
 		height:140px;
 	}
-
+    
+    .banner-title img{
+        float: none;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 24px;
+    }
+    
+    #profile-summary{
+        float: none;
+        text-align: center;
+        margin: 0 auto;
+        padding:0 36px
+    }
 }
 
 @media (max-width: 575px){
@@ -426,6 +440,15 @@ a:active {
 	.modal-content {
 		max-width: 200px;
 	}
+    
+    #skill-section ul{
+        margin: auto 10% !important;
+        
+    }
+    
+    #skill-section li{
+        text-align: right !important;
+    }
 
 }
 
