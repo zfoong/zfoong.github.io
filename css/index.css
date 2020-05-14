@@ -72,6 +72,7 @@ causing horizontal scroll bar
 	top:50vh;
 	transform: translateY(-50%);
 	z-index:100;
+    text-align:right;
 }
 
 .nav-item{
@@ -86,15 +87,6 @@ causing horizontal scroll bar
 	color:#ffb900 !important;
 }
 
-#banner-section{
-	text-align:center;
-	margin:auto; 
-	height:100vh;
-	position: relative;
-	overflow: hidden;
-	min-height:550px;
-}
-
 .bg{
     width: 100%;
     height: 100%;
@@ -105,12 +97,26 @@ causing horizontal scroll bar
 	background: #000000;
 }
 
+#banner-section{
+	text-align:left;
+	margin:auto; 
+	height:100vh;
+	position: relative;
+	overflow: hidden;
+	min-height:550px;
+}
+
+section > h3{
+    text-align:center;
+    color: white;
+}
+
 .banner-title{
 	color:white;
 
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
-  
+    display: inline-block;
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -119,25 +125,80 @@ causing horizontal scroll bar
 	animation: fadeIn-title 1s ease-in-out;
 }
 
-.banner-img{
-	width: 100%;
-	text-align: left;
-	margin-left: 10px;
-	margin-top: 30px;
+#profile-summary{
+    width: 500px;
+    float: right;
 }
-	
-#banner-logo{
-	position:absolute;
-	width: 80px;
-	height: 80px;
-	border-radius:2px;
+
+#profile-summary h3{
+    font-size: 32px;
+}
+
+#profile-summary p{
+    color: #cccccc;
+    margin-bottom: 8px;
+}
+
+#profile-summary span{
+    color: #555;
+    font-size:14px;
+}
+
+.banner-title img{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    float: left;
+    margin-right: 20px;
 }
 
 #summary-section{
-	text-align:center;
 	margin:auto; 
 	background:#121212;
-	color:white;
+	color: #cccccc;
+}
+
+.summary-row, .education-row{
+    display: inline-block;
+    width:100%;
+    margin: 10px auto;
+}
+
+.row-left{
+    text-align: right;
+    float:left;
+    width: 50%;
+    padding-right: 20px;
+}
+
+.row-left h5{
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.row-left h4{
+    font-size: 24px;
+    line-height: 22px;
+}
+
+.row-left p{
+    font-size: 14px;
+    line-height: 10px;
+}
+
+.row-right{
+    text-align: left;
+    border-left-style: solid;
+    float:right;
+    width: 50%;
+    padding-left:20px;
+}
+
+.education-row .row-right p{
+    font-size: 16px;
+    line-height: 14px;
+    margin-bottom: 8px;
 }
 
 .animation-section-inview.anim-started{
@@ -147,14 +208,33 @@ causing horizontal scroll bar
 	-webkit-animation:: fade-up 1s ease-in-out;
 }
 
-#summary-section img{
+#education-section{
+    margin:auto; 
+	color: #cccccc;
+}
+
+#skill-section{
+    margin:auto; 
+	background:#121212;
+	color: #cccccc;
+    text-align: center;
+}
+
+#skill-section img{
 	height:100px;
 	width:100px;
 	margin:16px;
+    margin-top: 0px;
 }
 
-#summary-section p{
-	color:#555;
+#skill-section ul{
+	margin-left: 10%;
+    margin-top: 16px;
+    list-style-image: url(../graphic/type-icon.png);
+}
+
+#skill-section li{
+	text-align: left;
 }
 
 #repo-section{
@@ -207,6 +287,26 @@ causing horizontal scroll bar
 	margin:0 auto;
 }
 
+a:link {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+a:visited {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+a:hover {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
+a:active {
+  color: inherit; /* blue colors for links too */
+  text-decoration: inherit; /* no underline */
+}
+
 #repo-section p{
 	margin-top:16px;
 }
@@ -218,24 +318,21 @@ causing horizontal scroll bar
 	color:white;
 }
 
-#div-thankyou-contact{
-	display:none;
+#contact-section .container{
+	width:500px;
 }
 
-textarea:focus, input:focus, select:focus{
-    border: 1px solid #ffb900 !important;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px  #ffb900 !important;
+#contact-section li{
+	list-style:none;
+    text-align:left;
 }
 
-.btn-default{
-	background:#ffb900;
-	color:white;
+#contact-section li p{
+	display: inline-block;
 }
 
-.btn-default:hover{
-	background:white;
-	color:#ffb900;
-	cursor:pointer;
+#contact-section li span{
+	margin-left: 10px;
 }
 
 #footer{
@@ -248,52 +345,6 @@ textarea:focus, input:focus, select:focus{
 .copyright-p{
 	font-size:12px;
 	margin-bottom:0;
-}
-
-.img-popup-box{
-	position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-	width:100vw;
-	height:100vh;
-	background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-	display:show;
-	top:0;
-	left:0;
-	display:none;
-}
-
-.close {
-    position: absolute;
-    top: 15px;
-    right: 55px;
-    color: #f1f1f1;
-    font-size: 70px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.modal-content {
-    display: block;
-    max-width: 400px;
-	max-height:80%;
-	transform: translate(-50%,-50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-}
-
-.modal-content {    
-    -webkit-animation-name: zoom;
-    -webkit-animation-duration: 0.6s;
-    animation-name: zoom;
-    animation-duration: 0.6s;
 }
 
 @media (max-width: 1400px){
