@@ -1,0 +1,56 @@
+@charset "utf-8";
+
+#blog-post-list{
+	text-align:left;
+	width: 800px;
+	margin: 0 auto; 
+}
+
+.blog-post{
+	background-color: #ffffff;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+	padding:24px 24px !important;
+	border-radius: 25px;
+	box-shadow: 1px 5px 10px 10px #dbdbdb;
+	width:100%;
+	min-height: 198px;
+	
+}
+
+.blog-post:not(:first-child){
+	margin-top:36px;	
+}
+
+.blog-post > div{
+	flex: 1;
+	/* border: 1px solid black; */
+    height: 150px !important;
+	position: relative;
+}
+
+.blog-title{
+	display:block;
+	font-size:24px;
+	font-weight: bold;
+}
+
+.blog-date{
+	display:block;
+	font-size:12px;
+	position: absolute; /* Set the blog-date span to be absolutely positioned within the wrapper */
+    bottom: 0;
+}
+
+.blog-description{
+	display:block;
+}
+
+.blog-post > img{
+	width: 150px; /* adjust as needed */
+	height: 150px; /* adjust as needed */
+	object-fit: cover; /* crop the image if necessary */
+	margin-left: 20px; /* add some space between the text and image */
+}

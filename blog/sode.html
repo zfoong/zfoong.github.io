@@ -1,0 +1,185 @@
+ <!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	
+	 <!-- Deisgned by
+	
+        
+    88888888888 888                                  Y88b   d88P d8b 888           8888888888                                  
+        888     888                                   Y88b d88P  Y8P 888           888                                         
+        888     888                                    Y88o88P       888           888                                         
+        888     88888b.   8888b.  88888b.d88b.          Y888P    888 888  888      8888888  .d88b.   .d88b.  88888b.   .d88b.  
+        888     888 "88b     "88b 888 "888 "88b          888     888 888 .88P      888     d88""88b d88""88b 888 "88b d88P"88b 
+        888     888  888 .d888888 888  888  888          888     888 888888K       888     888  888 888  888 888  888 888  888 
+        888     888  888 888  888 888  888  888          888     888 888 "88b      888     Y88..88P Y88..88P 888  888 Y88b 888 
+        888     888  888 "Y888888 888  888  888          888     888 888  888      888      "Y88P"   "Y88P"  888  888  "Y88888 
+                                                                                                                           888 
+                                                                                                                      Y8b d88P 
+                                                                                                                       "Y88P"  
+
+    # https://zfoong.github.io/
+
+	-->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A Github Profile Page">
+	<meta name="keywords" content="Tham Yik Foong, Github, Webpage">
+	<meta name="robots" content="index,follow">
+	<meta name="author" content="Tham Yik Foong" />
+	<title>Foong's Profile</title>
+	
+	<meta property="og:title" content="Foong's Profile" />
+	<meta property="og:description" content="A Github Profile Page" />
+	<meta property="og:type" content="article" />
+	<meta property="og:site_name" content="Foong's Profile" />
+	<meta property="og:image" content="graphic/type-icon.png" />
+	
+	<link rel="icon" type="../image/png" href="graphic/favicon.ico" />
+	<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">	
+	<link rel="stylesheet" href="../css/index.css" type="text/css">
+	<link rel="stylesheet" href="../css/post.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</head>
+	
+<body>
+	<div id="wrapper">
+		
+		<div class="section-divider"></div>
+		
+		<section id="link-section" class="section">
+			<a href="../blog.html">Blog</a>
+			<a href="../index.html">Home</a>
+			<a href="https://scholar.google.com/citations?user=Q24NWS4AAAAJ">Publication</a>
+			<a href="https://github.com/zfoong">Github</a>
+		</section>
+		
+		<section id="post-section" class="section">
+		<div class="section-divider">
+			<span>------------------------------------- Post ---------------------------------------</span>
+		</div>
+		
+		<div id="blog-post">
+		
+		<h1 id=post-title>Self-Organizing Dynamical Equations</h1>
+		
+		<h2>Alternative learning algorithm to backpropagation</h2>
+
+		<h3>What’s wrong with back-propagation?</h3>
+
+		<p>
+		Backpropagation is a gradient-based optimization method that is most widely used in training neural networks nowadays. Before touching on the drawbacks of back-propagation, we should first talk about what makes it a popular choice for training neural networks. 
+		</p>
+
+		<p>
+		First of all, Backpropagation is relatively easy to implement compared to other optimization algorithms. Countless coding frameworks and libraries are available online (e.g., PyTorch, Tensorflow, you name it). it is also a widely studied and well-understood field, and there is a large body of research on how to improve its performance and efficiency. This makes it a good choice for practical applications, as there are many strategies (small and smart twerks) that have been developed to address its drawbacks and improve its performance. Lastly, back-propagation has been proven successful in a wide range of applications, from powering self-driving cars, answering your questions (ChatGPT), and winning against humans in games, among others.
+		</p>
+		
+		<p>
+		With that being said, why do we still need any alternative learning algorithms to replace back-propagation? What’s wrong with it? To answer these questions, we have to understand our use case. If we want to perform the tasks listed above, sure! Backpropagation will do the jobs just right. However, if we want something more than that, let’s say, solving most real-world problems with one model or achieving Artificial General Intelligence (AGI), the gradient-based optimization methods still need to solve some challenges.
+		</p>
+		
+		<p>
+		The simple reason being - it is simply not adaptive and robust enough to do so. Firstly, back-propagation is considered brittle because it is highly sensitive to changes in the input data and the network architecture. Even small changes to the input data can result in large changes in the output of the network, making it difficult to generalize to new data. Also, the models can be vulnerable to adversarial attacks, where small perturbations to the input data can cause the network to misclassify the input. 
+		</p>
+		
+		<p>
+		Secondly, it's not very realistic when it comes to how the brain works, since the brain doesn't appear to use error back-propagation to learn (<i>pssst. not biologically implausible</i>). Instead, it likely uses Hebbian learning, reinforcement learning, or other methods we have not discovered yet. Deep learning models are generally good at finding correlations in the data, but they may not provide insights into causal relationships. This can limit their usefulness in domains where causal understanding is important.
+		</p>
+		
+		<p>
+		Lastly, it's not very adaptable since it needs a fixed set of data to learn from, which can't be adjusted as new data comes in. In another word, it is domain-specific, adapting these models to new tasks or domains can be challenging and may require significant expertise. In contrast, biological systems are always adapting and learning from new experiences.
+		</p>
+
+		<h3>What are the alternatives?</h3>
+		
+		<p>
+		So…what are the alternatives? There are a number of alternative ways to learning other than Backpropagation. For instance, Evolutionary algorithms, Hebbian Learning, Kernel-based methods, and many more, you name it. In this post, I want to introduce one particular paradigm of learning that has recently been proposed in the lab — Self-organizing dynamical equations — a learning algorithm that focuses on the objective of being adaptive and robust. 
+		</p>
+
+		<h2>Self-organizing dynamical equations (SODE)</h2>
+
+		<h3>What is it for?</h3>
+
+		<p>
+		Self-organizing dynamical equations is an algorithm that adaptively performs clustering/chunking on sequential input. In a nutshell, when inputs often activate together or back-to-back time-wise, they must be temporally correlated, therefore should be grouped together! The best part of this algorithm, however, is its **adaptability**. This means that, when the input distribution changes, SODE can re-learn and adapt to it. Currently, the paradigm contains three algorithms, SyncMap [1], Symmetrical SyncMap, and Hierarchical Temporal Spatial Feature Map (TSFMap) [2].
+		</p>
+
+		<h3>How does it work?</h3>
+
+		<p>
+		In a nutshell, SODE uses a set of dynamical equations to allow weights (weights are initialized corresponding to the inputs) to self-organize into some sort of pattern in the weight space. The weight space basically maps the temporal correlation of weights into a spatial mapping. That’s how we know what inputs are temporally related to which other inputs.
+		</p>
+		
+		<p>
+		Rather than showing a bunch of crazy equations, perhaps this animation can help you better understand how SODE (SyncMap) works.
+		</p>
+		
+		<iframe src="https://youtu.be/89Gn2EvdLRo"></iframe>
+
+		<p>
+		Another model that is based on SODE is called a Hierarchical TSFMap. It is designed to find Hierarchical structure and temporal correlation from sequential data that is dynamically changing its input distribution. Here are some properties and examples of Hierarchical TSFMap in action.
+		</p>
+		
+		<iframe src="https://youtu.be/kWhTJG5XYmQ"></iframe>
+		
+		<p>
+		Adaptation comes from the fact that the proposed system, Hierarchical TSFMap, couples its internal dynamics with the input, resulting in patterns encoded as emergent attractor-repellers at
+		equilibrium. Consequently, alterations in the underlying structure of the problem result in different equilibrium with new attractor-repellers, triggering an inherent adaptation when the problem changes. Interestingly, structural changes in the environment cause in Hierarchical TSFMap a phenomenon very similar to phase transition observed in thermodynamics, and chemistry, among other areas (Fig. 1).
+		</p>
+		
+		<img alt="Phase Transition of Hierarchical TSFMap" src="inc/sode/fig_1.png"/>
+		<span class="caption">Fig.1 Phase Transition of Hierarchical TSFMap</span>
+
+		<h3>What has SODE achieved so far?</h3>
+		
+		<p>
+		So far, SyncMap has successfully performed chunking on sequential data. That is, grouping together related input into separated chunks to extract pattern from time-series data. 
+		</p>
+		
+		<img alt="Extracting Hierarchical Structure from Zachary's karate club network" src="inc/sode/syncmap.png"/>
+		<span class="caption">Fig.2 Problem description (up left), learned input-output map (upper middle) and respective learned clustering (upper right). The problem is a cyclic directed graph with node numbers as indicated. Each node number consists of a given input which is activated and inputted by a random walk over the graph (see the Section for more details). The learned input-output map is as follows: input (red line) and learned output (dash-dotted line). In direct correspondence to the learned output, it is possible to cluster the nodes with the colors shown (upper right).</span>
+		
+		<p>
+		On the other hand, Hierarchical TSFMap managed to extract hierarchical structure from sequential data. What’s more impressive is, the problem distribution itself is imbalanced and dynamic (the correlation of the inputs changes during learning). Yet, the video above also showed that the model can adapt to it and achieve high accuracy, beating other baseline methods. 
+		</p>
+		
+		<p>
+		Last but not least, we apply Hierarchical TSFMap on some famous network datasets (Zachary's karate club network and Dolphin social network dataset). Despite being common datasets, our model managed to uncover hierarchical information (That the community can further be broken down into even smaller communities) that has yet to be widely discussed before in other literature.
+		</p>
+		
+		<img alt="Extracting Hierarchical Structure from Zachary's karate club network" src="inc/sode/ext_fig11_1.png"/>
+		<span class="caption">Fig.3 Extracting Hierarchical Structure from Zachary's karate club network</span>
+
+		<h3>What is the future of SODE?</h3>
+
+		<p>
+		Of course, this still young paradigm is not yet perfect. For instance, it can only accept spiked encoded input and does not preserve memory. It will be egotistical to claim such a model is better than deep learning. However, the advantage of SODE is that it can adaptively extract any temporal-spatial correlation from data, as long as the inputs are serialized into spiked encoded input (Aka. generalization). Therefore, the model is expected to become more widely applicable to various types of datasets due to its adaptability and robustness. In short, It is a model that attempts to solve learning problems from the functional or Hopfieldian view [3] of the brain, our attempt can perhaps bring more insight into developing a better learning algorithm from a different perspective than the mainstream.
+		</p>
+		
+		<h3>References</h3>
+		<div id="reference-section">
+			<span>[1] Vargas, Danilo Vasconcellos, and Toshitake Asabuki. "Continual general chunking problem and syncmap." Proceedings of the AAAI Conference on Artificial Intelligence. Vol. 35. No. 11. 2021.</span>
+			<span>[2] Vargas, Danilo Vasconcellos, Tham Yik Foong, and Heng Zhang. "Dynamical Equations With Bottom-up Self-Organizing Properties Learn Accurate Dynamical Hierarchies Without Any Loss Function." arXiv preprint arXiv:2302.02140 (2023).</span>
+			<span>[3] Barack, David L., and John W. Krakauer. "Two views on the cognitive brain." Nature Reviews Neuroscience 22.6 (2021): 359-371.</span>
+		</div>
+		
+		</div>
+		
+		
+		
+		<div class="section-divider">
+			<span>----------------------------------- End of Post ----------------------------------</span>
+		</div>
+		</section>
+
+		<div id="footer">
+			<p class="copyright-p">Copyright © 2022 <span style="color:#666;">Tham Yik Foong</span></p>
+		</div>
+	</div>
+</body>
+
+</html>
