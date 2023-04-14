@@ -1,0 +1,160 @@
+ <!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	
+	 <!-- Deisgned by
+	
+        
+    88888888888 888                                  Y88b   d88P d8b 888           8888888888                                  
+        888     888                                   Y88b d88P  Y8P 888           888                                         
+        888     888                                    Y88o88P       888           888                                         
+        888     88888b.   8888b.  88888b.d88b.          Y888P    888 888  888      8888888  .d88b.   .d88b.  88888b.   .d88b.  
+        888     888 "88b     "88b 888 "888 "88b          888     888 888 .88P      888     d88""88b d88""88b 888 "88b d88P"88b 
+        888     888  888 .d888888 888  888  888          888     888 888888K       888     888  888 888  888 888  888 888  888 
+        888     888  888 888  888 888  888  888          888     888 888 "88b      888     Y88..88P Y88..88P 888  888 Y88b 888 
+        888     888  888 "Y888888 888  888  888          888     888 888  888      888      "Y88P"   "Y88P"  888  888  "Y88888 
+                                                                                                                           888 
+                                                                                                                      Y8b d88P 
+                                                                                                                       "Y88P"  
+
+    # https://zfoong.github.io/
+
+	-->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A Github Profile Page">
+	<meta name="keywords" content="Tham Yik Foong, Github, Webpage">
+	<meta name="robots" content="index,follow">
+	<meta name="author" content="Tham Yik Foong" />
+	<title>Foong's Profile</title>
+	
+	<meta property="og:title" content="Foong's Profile" />
+	<meta property="og:description" content="A Github Profile Page" />
+	<meta property="og:type" content="article" />
+	<meta property="og:site_name" content="Foong's Profile" />
+	<meta property="og:image" content="graphic/type-icon.png" />
+	
+	<link rel="icon" type="../image/png" href="graphic/favicon.ico" />
+	<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">	
+	<link rel="stylesheet" href="../css/index.css" type="text/css">
+	<link rel="stylesheet" href="../css/post.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</head>
+	
+<body>
+	<div id="wrapper">
+		
+		<div class="section-divider"></div>
+		
+		<section id="link-section" class="section">
+			<a href="../blog.html">Blog</a>
+			<a href="../index.html">Home</a>
+			<a href="https://scholar.google.com/citations?user=Q24NWS4AAAAJ">Publication</a>
+			<a href="https://github.com/zfoong">Github</a>
+		</section>
+		
+		<section id="post-section" class="section">
+		<div class="section-divider">
+			<span>------------------------------------- Post ---------------------------------------</span>
+		</div>
+		
+		<div id="blog-post">
+		
+		<h1 id=post-title>Using Reinforcement Learning to model Collective and Adversarial Behaviours with Active Brownian Particles</h1>
+		
+		<h2>Birds, Fly together, Strong</h2>
+
+		<p>
+		During my master's thesis, I had the exciting opportunity to choose a project aligned with my research interest in Reinforcement Learning (RL). The objective of this project was to model the behaviors of Active Brownian Particles using RL. While the topic was fascinating, I initially struggle with understanding Active Brownian Particles, as it was an area I wasn't too familiar with. In a nutshell, active Brownian particles are just a bunch of things that move sopntaniously, often found in complex biological systems such as bird flocking and bacterial behavior. Then, I want to control these particles using RL to perform different behaviours, for instance, clustering or flocking. It is fun because we get to see how these particles started moving in such a way that is fascinating. Also, I want to thank my supervisor Dr. Tom Oakes for guiding me in this project.
+		</p>
+
+		<p>
+		To begin, we defined state, action and reward for our agent (the particles). 
+		</p>
+		
+		<ul>
+		<li>
+		state: The average orientation of neigbouring particles.
+		</li>
+		<li>
+		action: an external force act on the agents’ orientation.
+		</li>
+		<li>
+		reward: global and individual active work (in a nutshell: how much the particles move in a time step)
+		</li>
+		</ul>
+		
+		<p>
+		And we create two types of agents, flocking agents and clustering agents: The flocking agents will try their best to flock arund freely (maximizing the global active work); while the clustering agents will try their best to suspend any movement (maximizing the global active work). Then, we throw them into a 2D periodic boundary conditions space to learn and achieve their goal (at the same time staring at them like a proud father, and hope fun behaviours would emerge).
+		</p>
+		
+		<p>
+		In the begining of the project, I tried Q-function, but it turned out not to be a meh, as it struggled with fine-grained time units and perturbed rewards. So, I moved on to model-based learning with a pinch of TD-Learning and a sprinkle of other learning tricks. And It worked like a charm!
+		</p>
+		
+		<p>
+		Next, I used Multi-Agent Reinforcement Learning (MARL) framework to whip up two types of agents that either went all-in to maximize active work or played it cool and minimized it. Our flocking agents were like synchronized swimmers, keeping the group together and avoiding collisions. On the other hand, our clustering agents huddled up in dense groups, barely moving a muscle to minimize their active work.
+		</p>
+		
+		<iframe src="https://youtu.be/BNb_26w3kms"></iframe>
+		<span class="caption">Flocking agents performing flocking behaviours.</span>
+		
+		<iframe src="https://youtu.be/Ev_tFwF0gh4"></iframe>
+		<span class="caption">Clustering agents doing their things to minimize movement.</span>
+		
+		<img alt="Prey-predator model" src="inc/collective-x-adversarial-ams/ssd.png" width="300"/>
+		<span class="caption">Fig.1 Notable behaviours occur among our trained adversarial behaviour agents, or prey-predator model. (A) Prey (yellow cell on top) ”saves” another captured prey (yellow cell at the centre) by distracting predators (red cells). (B) It requires a minimum of six predators to completely surround a prey, to suppress its movement. (C) Predators distracted by multiple preys. (D) Predators chasing after a prey.</span>
+
+		
+		<h3>A Wild Prey-Predator Model Appears</h3>
+		
+		<p>
+		Here comes the fun part! I threw both types of agents into the same system to see what kind of behaviours they'd get up to. The clustering agents turned into sneaky predators, capturing the flocking agents without chasing them blindly. Meanwhile, the flocking agents tried to distract the clustering agents with their fancy flocking moves. I also looked into how many of each type of agent it would take for one side to outsmart the other (it is like a little competitions). 
+		</p>
+		
+		<iframe src="https://youtu.be/w1pmQvY8cQU"></iframe>
+		<span class="caption">Emergence of Prey-Predator Model.</span>
+		
+		
+		<h2>So, key takeaways from this thesis:</h2>
+		<ol>
+		<li>Agents struggled to learn proper state-action value mapping using Q-function in complex models with noisy scenarios, environment with fine-grained time units and temporally delayed rewards.</li>
+		<li>Model-based learning and state-transition probability functions improved learning by addressing issues of temporal delayed rewards and noisy scenarios.</li>
+		<li>Learning rate decay, global and individual reward aggregation, and bootstrapping enhanced learning efficiency.</li>
+		<li>Flocking behavior agents learned to maintain alignment, group cohesion, and maximize active work.</li>
+		<li>Clustering behavior agents learned to form clusters, minimizing active work.</li>
+		<li>The interaction between flocking and clustering agents exhibited a prey-predator model.</li>
+		</ol>
+
+		<h3>What's next on the horizon?</h3>
+
+		<p>
+		In our prey-predator showdown, the prey didn't quite dodge the incoming predators as well as I hoped. It turns out our agents needed a bit more sensory info in their state space. So, what if we give our agents a little upgrade, like including predator positions in their state space or even creating a cool visual radar around their bodies? If we can get these improvements just right, we'll have an even better prey-predator model to explore, and who knows what other cute little discoveries we'll make! Anyway, this blog post omitted quite a lot of details from the thesis, I recommend you to check out the code and full paper from [1].
+		</p>
+
+
+		<h3>References</h3>
+		<div id="reference-section">
+			<span><a href="https://github.com/zfoong/collective-x-adversarial-ams">[1] Code and paper for this thesis in Github</a></span>
+		</div>
+		
+		</div>
+		
+		
+		
+		<div class="section-divider">
+			<span>----------------------------------- End of Post ----------------------------------</span>
+		</div>
+		</section>
+
+		<div id="footer">
+			<p class="copyright-p">Copyright © 2023 <span style="color:#666;">Tham Yik Foong</span></p>
+		</div>
+	</div>
+</body>
+
+</html>
