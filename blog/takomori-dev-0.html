@@ -1,0 +1,155 @@
+ <!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	
+	 <!-- Deisgned by
+	
+        
+    88888888888 888                                  Y88b   d88P d8b 888           8888888888                                  
+        888     888                                   Y88b d88P  Y8P 888           888                                         
+        888     888                                    Y88o88P       888           888                                         
+        888     88888b.   8888b.  88888b.d88b.          Y888P    888 888  888      8888888  .d88b.   .d88b.  88888b.   .d88b.  
+        888     888 "88b     "88b 888 "888 "88b          888     888 888 .88P      888     d88""88b d88""88b 888 "88b d88P"88b 
+        888     888  888 .d888888 888  888  888          888     888 888888K       888     888  888 888  888 888  888 888  888 
+        888     888  888 888  888 888  888  888          888     888 888 "88b      888     Y88..88P Y88..88P 888  888 Y88b 888 
+        888     888  888 "Y888888 888  888  888          888     888 888  888      888      "Y88P"   "Y88P"  888  888  "Y88888 
+                                                                                                                           888 
+                                                                                                                      Y8b d88P 
+                                                                                                                       "Y88P"  
+
+    # https://zfoong.github.io/
+
+	-->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A Github Profile Page">
+	<meta name="keywords" content="Tham Yik Foong, Github, Webpage">
+	<meta name="robots" content="index,follow">
+	<meta name="author" content="Tham Yik Foong" />
+	<title>Foong's Profile</title>
+	
+	<meta property="og:title" content="Foong's Profile" />
+	<meta property="og:description" content="A Github Profile Page" />
+	<meta property="og:type" content="article" />
+	<meta property="og:site_name" content="Foong's Profile" />
+	<meta property="og:image" content="graphic/type-icon.png" />
+	
+	<link rel="icon" type="../image/png" href="graphic/favicon.ico" />
+	<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">	
+	<link rel="stylesheet" href="../css/index.css" type="text/css">
+	<link rel="stylesheet" href="../css/post.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</head>
+	
+<body>
+	<div id="wrapper">
+		
+		<div class="section-divider"></div>
+		
+		<section id="link-section" class="section">
+			<a href="../blog.html">Blog</a>
+			<a href="../index.html">Home</a>
+			<a href="https://scholar.google.com/citations?user=Q24NWS4AAAAJ">Publication</a>
+			<a href="https://github.com/zfoong">Github</a>
+		</section>
+		
+		<section id="post-section" class="section">
+		<div class="section-divider">
+			<span>------------------------------------- Post ---------------------------------------</span>
+		</div>
+		
+		<div id="blog-post">
+		
+		<h1 id=post-title>Dev Blog V0.0: Prerequisite Knowledge Graph and Takomori</h1>
+
+		<p>
+		As mentioned in the previous post, I am writing a development blog to document the creation of the Prerequisite Knowledge Graph and its user interface, Takomori [1].
+		</p>
+
+		<p>
+		With that in mind, the project began along two parallel paths: (1) creating an ecosystem to govern the Prerequisite Knowledge Graph database, and (2) developing a web interface for user interaction. Since I am not familiar with app development, I decided to start with a simple web interface first using React for the front end and Node.js for the back end.
+		</p>
+
+		<h2>
+		An ecosystem that manages the Prerequisite Knowledge Graph database.
+		</h2>
+		
+		<p>
+		The <u><a href="https://zfoong.github.io/blog/prerequisite-knowledge-graph.html">Prerequisite Knowledge Graph</a></u> is more than a simple graph dataset; to me, it's a living entity, its structure evolving alongside people's opinions. Ideally, the graph should constantly incorporate new topics, reflecting the technological advancements of our world, and replacing less effective elements. Thus, we need an ecosystem to manage the graph, integrating various subsystems such as voting systems and supervisory mechanisms to ensure the graph's accuracy; User-provided suggestion could be implemented to bring in more topics; As for version control, every month, the pre-live graph is promoted to the live graph status, and this setup allows experts and editors to safely work on and commit changes to the pre-live graph, mitigating sudden, drastic alterations. Of course, the current ecosystem design is rudimentarily simple, given its ambitious goal to incorporate as much human knowledge as possible. This could potentially overwhelm the current framework design, but I hope to see improvements in future iterations.
+		</p>
+		
+		<p>
+		Deciding where to host the prerequisite knowledge graph was a challenging choice. After much consideration, I chose to host the graph in both Neo4j and MongoDB. To be honest, I'm unsure if this is a wise decision. Having such an architecture might seem like a disaster waiting to happen, such as unsynced data between Neo4j and MongoDB, so on. My justification for this decision, however, is that storing non-graph-structured data can be quite troublesome. Although properties of the topic could be stored as nodes or node properties, the complexity of the data structure might become confusing in a long run (if there is a long run). Therefore, Neo4j is used to store the IDs of topics, their relationships, and some basic properties. The remainder of the data, which is easier to store and retrieve, is handled by MongoDB. This approach ensures a quicker retrieval of the knowledge graph than if the relationships and graph structure were stored solely in MongoDB.
+		</p>
+		
+		<p>
+		Regarding this ecosystem, I believe it deserves a detailed explanation in a separate post of its own.
+		</p>
+		
+		<h2>
+		Web interface of Takomori
+		</h2>
+		
+		<p>
+		The reason behind the name "Takomori" is simple; it's catchy and the domain name was still available. Also, in Japanese, it translates to "octopus forest". This visual analogy depicts the octopus' head as a node, and its legs as connections to other nodes. Plus, octopuses are both cute and intelligent, which makes them perfect mascots for representing intellect (although owls would be a great choice too, but Duolingo already uses them). Moreover, the inspiration for the concept of ‘forest’ comes from the tech tree that often appears in games, which naturally, having a forest hosting many tech trees sounds amazing. 
+		</p>
+		
+		<img alt="Kurotako (Logo)" src="inc/takomori-dev-0/logo_sm.png" width="150"/>
+		<span class="caption">This is the logo/mascot for the website. I named it Kurotako, a majestic octopus creature that strives to bring out the best in you.</span>
+		
+		<p>
+		The next step involves choosing a tech stack, a challenging task given the market's saturation with too many options, each having their own merits. My first experience with web development is using PHP to make a small project, which remains the only backend language I know. However, it's somewhat unpopular among other developers. So, I turned to the internet for recommendations and ultimately decided to start with Node.js and EJS. After struggling with managing EJS pages on the front end, I settle for React instead.
+		</p>
+		
+		<p>
+		Followed by that, I initiated the project by developing a simple site map and sketching several designs in Photoshop. Once prepared, I started coding, following several tutorials. The work involved nothing overly technical, just simple web development tasks. Afterall, this is not an in-depth, hardcore development blog/tutorial, as the technology and programming methodology employed are pretty basic. This post here is more of a casual dev blog, documenting the progress of this project. Here are some screenshots of the current progress:
+		</p>
+		
+		<img alt="Screenshot of progress (login page)" src="inc/takomori-dev-0/ss1.png" width="800"/>
+		<span class="caption">The login page.</span>
+		
+		<img alt="Screenshot of progress (User dashboard)" src="inc/takomori-dev-0/ss2.png" width="800"/>
+		<span class="caption">The user dashboard.</span>
+		
+		<img alt="Screenshot of progress (graph)" src="inc/takomori-dev-0/ss3.png" width="800"/>
+		<span class="caption">The Prerequisite Knowledge Graph.</span>
+		
+		<img alt="Screenshot of progress (graph)" src="inc/takomori-dev-0/ss4.png" width="800"/>
+		<span class="caption">The Prerequisite Knowledge Graph with vertical layout.</span>
+		
+		<img alt="Screenshot of progress (explore)" src="inc/takomori-dev-0/ss5.png" width="800"/>
+		<span class="caption">The Explore page.</span>
+		
+		<img alt="Screenshot of progress (landing page)" src="inc/takomori-dev-0/landing_page.png" width="800"/>
+		<span class="caption">The Pre-launch landing page. Feel free to drop by and subscribe to the mailing list!</span>
+
+		<p>
+		However, I'm keen to write a blog about how the graph is presented as it is. Currently, I'm focusing on squeezing out a minimum viable product (MVP), and hopefully, I can finish it and discuss it in the next post. At this stage, the main task is still to design how the platform will look and work from a functional perspective, as a web product that encourages learning and provides guidance.
+		</p>
+
+
+		<h3>References</h3>
+		<div id="reference-section">
+			<span><a href="www.takomori.com">[1] The web interface of Takomori and Prerequisite Knolwedge Graph.</a></span>
+		</div>
+		
+		</div>
+		
+		
+		
+		<div class="section-divider">
+			<span>----------------------------------- End of Post ----------------------------------</span>
+		</div>
+		</section>
+
+		<div id="footer">
+			<p class="copyright-p">Copyright © 2023 <span style="color:#666;">Tham Yik Foong</span></p>
+		</div>
+	</div>
+</body>
+
+</html>
