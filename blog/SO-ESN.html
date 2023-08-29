@@ -1,0 +1,200 @@
+ <!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	
+	 <!-- Deisgned by
+	
+        
+    88888888888 888                                  Y88b   d88P d8b 888           8888888888                                  
+        888     888                                   Y88b d88P  Y8P 888           888                                         
+        888     888                                    Y88o88P       888           888                                         
+        888     88888b.   8888b.  88888b.d88b.          Y888P    888 888  888      8888888  .d88b.   .d88b.  88888b.   .d88b.  
+        888     888 "88b     "88b 888 "888 "88b          888     888 888 .88P      888     d88""88b d88""88b 888 "88b d88P"88b 
+        888     888  888 .d888888 888  888  888          888     888 888888K       888     888  888 888  888 888  888 888  888 
+        888     888  888 888  888 888  888  888          888     888 888 "88b      888     Y88..88P Y88..88P 888  888 Y88b 888 
+        888     888  888 "Y888888 888  888  888          888     888 888  888      888      "Y88P"   "Y88P"  888  888  "Y88888 
+                                                                                                                           888 
+                                                                                                                      Y8b d88P 
+                                                                                                                       "Y88P"  
+
+    # https://zfoong.github.io/
+
+	-->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A Github Profile Page">
+	<meta name="keywords" content="Tham Yik Foong, Github, Webpage">
+	<meta name="robots" content="index,follow">
+	<meta name="author" content="Tham Yik Foong" />
+	<title>Foong's Profile</title>
+	
+	<meta property="og:title" content="SO-ESN" />
+	<meta property="og:description" content="A Github Profile Page" />
+	<meta property="og:type" content="article" />
+	<meta property="og:site_name" content="Foong's Profile" />
+	<meta property="og:image" content="graphic/type-icon.png" />
+	
+	<link rel="icon" type="../image/png" href="graphic/favicon.ico" />
+	<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">	
+	<link rel="stylesheet" href="../css/index.css" type="text/css">
+	<link rel="stylesheet" href="../css/post.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</head>
+	
+<body>
+	<div id="wrapper">
+		
+		<div class="section-divider"></div>
+		
+		<section id="link-section" class="section">
+			<a href="../blog.html">Blog</a>
+			<a href="../index.html">Home</a>
+			<a href="https://scholar.google.com/citations?user=Q24NWS4AAAAJ">Publication</a>
+			<a href="https://github.com/zfoong">Github</a>
+		</section>
+		
+		<section id="post-section" class="section">
+		<div class="section-divider">
+			<span>------------------------------------- Post ---------------------------------------</span>
+		</div>
+		
+		<div id="blog-post">
+		
+		<h1 id=post-title>Self-Oscillatory Echo State Network: Using artificial neuron circuit to generate oscillation</h1>
+
+		<p>
+		I remember two years ago my supervisor showed me a video of a decerebrated cat walking on a treadmill (I liked to think of it as a 'zombie cat'). What's more creepy, when the treadmill's speed increased, the cat can adjuste its gait to match the speed of the treadmill. The whole experiment might sound eerie and inhumane, but what is the science behind this spontaneous and adaptive behavior? It turns out, the movement is regulated by what is called a central pattern generator (CPG) in the cat's spinal cord. A CPG is a collection of neural circuits that control periodic movement without any external input; feedback merely aids in adaptation, like gait transition. Such generators are pervasive in the system of animals, including humans. CPGs are responsible for various functions like heartbeat, movement, flying, swimming, and much more. I find this topic intriguing because understanding it could pave the way for advanced robotic development by mimicking these natural systems.
+		</p>
+		
+		<iframe src="https://www.youtube.com/embed/wPiLLplofYw?si=RY7FXAownMCw59VG"></iframe>
+
+		<p>
+		Fast forward to one and a half year later, when I was playing around with the echo state network, I realized that the reservoir (a network with random connections where the weight matrix follows specific settings) could occasionally produce spontaneous and self-sustaining oscillations without any input. This behavior was reminiscent of the central pattern generator, leading me to speculate that perhaps reservoirs could be used to simulate central pattern generators.
+		</p>
+		
+		<p>
+		Therefore, I began analyzing the behavior and exploring ways to enhance the probability of the reservoir producing oscillations. Initially, I modified the reservoir state update equation by eliminating the input layer, while keeping the output equation unchanged.
+		</p>
+		
+		<img alt="The equation of SO-ESN." src="inc/SO-ESN/eq.png" width="800"/>
+		<span class="caption">The state update and output equation of SO-ESN. It is JUST the same as the original ESN but without the input layer.</span>
+		
+		
+		<p>
+		Next, I delved into tweaking various parameters, such as the leaking rate, spectral radius (these are the hyperparameters for Echo State Network, I recommand checking out Echo State Network first if you haven’t, here is a <a href="https://staff.fmi.uvt.ro/~daniela.zaharie/am2016/proiecte/tehnici/ReservoirComputing/ESNTutorialRev.pdf"[1]>great paper</a> about it), neuron population, and different methods for initializing the reservoir weight matrix, to observe their impact on oscillation. The reservoir's connectivity comprised multiple sub-reservoirs with minimal coupling between them. This configuration proved beneficial for generating oscillations across different frequencies while optimizing the probability of oscillation. I named this model the Self-Oscillatory Echo State Network (SO-ESN).
+		</p>
+		
+		<img alt="Model architecture of SO-ESN" src="inc/SO-ESN/model.png" width="400"/>
+		<span class="caption">Model architecture of SO-ESN. W and Wout denote the connectivity of the reservoir and the reservoir to the readout layer, respectively, x is the state of the reservoir units, and y is the output.</span>
+		
+		<p>
+		Upon analyzing the reservoir of the SO-ESN, I observed the following:
+		</p>
+		
+		<ul>
+		
+			<li>The SO-ESN reservoir can sometimes produces damped oscillations, where the oscillations diminish over time and the reservoir units' state settles to a fixed value (this is not ideal).</li>
+			
+			<li>The SO-ESN reservoir (known as the self-oscillatory reservoir) can sometimes produce stable, self-sustaining oscillations.</li>
+			
+			<li>The self-oscillatory reservoir can create complex waveforms. These are spontaneously formed by the synergy of multiple subsets of coupled reservoir units.</li>
+			
+			<li>While the state of the reservoir fluctuates in amplitude, it maintains a consistent frequency. This phase locking of the frequency is a result of the strong coupling between reservoir units.</li>
+			
+			<li>So it is important that we can succesfully initialize a reservoir randomly that can generate oscillation, but that will not always be the case.</li>
+		
+		</ul>
+		
+		<img alt="Examples of oscillations produced by the internal neurons of the self-oscillatory reservoirs" src="inc/SO-ESN/oscillation_example.png" width="800"/>
+		<span class="caption">Examples of oscillations produced by the internal neurons of the self-oscillatory reservoirs. (A) Damped oscillation. (B) Self-sustaining oscillation generated from a self-oscillatory reservoir. After a few time steps, the initial conditions of the neurons are eliminated, and the neurons reach a steady oscillation phase. (C, D) The reservoir can generate slow or fast oscillation. (E) Complex waveforms generated from a self-oscillatory reservoir. The analysis of complex waveforms using the fast Fourier transform reveals that they consist of multiple frequency components.</span>
+		
+		<p>
+		You may have several questions at this point:
+		</p>
+		
+		<ol>
+		
+			<li>What criteria are necessary for the reservoir to oscillate?</li>
+			
+			<li>Given that I mentioned 'sometimes', how can we increase the likelihood of initializing a self-oscillatory reservoir?</li>
+			
+			<li>How do the leaking rate and spectral radius affect the oscillations produced?</li>
+		
+		</ol>
+		
+		<p>
+		And conveniently, here are the answers to these questions:
+		</p>
+		
+		<ul>
+		
+			<li>For the reservoir to self-oscillate, it becomes less probable when the spectral radius is close to or less than one (ρ < 1).</li>
+			
+			<li>A higher spectral radius induces more chaotic oscillations than a lower one.</li>
+			
+			<li>The leaking rate does not influence the odds of creating a self-oscillatory reservoir.</li>
+			
+			<li>The leaking rate does have an impact on oscillation frequency: a higher leaking rate results in a higher frequency, while a lower one yields a slower frequency.</li>
+			
+			<li>In our experiments, we employed a spectral radius in the range of 1.15 to 1.25.</li>
+		
+		</ul>
+		
+		<img alt="Ratio of self-oscillatory reservoir generated by tuning leaking rate and spectral radius" src="inc/SO-ESN/leaky_and_spectral_radius_ratio.png" width="800"/>
+		<span class="caption">Ratio (%) of self-oscillatory reservoir generated by tuning leaking rate and spectral radius. The heatmap indicates the ratio of self-oscillatory reservoirs (neuron population = 100) generated when adjusting the leaking rate and spectral radius.</span>
+		
+		<p>
+		We also identified certain neuron ensembles within the reservoir that are responsible for generating oscillations. We termed these as 'self-oscillatory neuron ensembles’. In a nutshell, they are network motifs with connections that inadvertently lead to oscillation.
+		</p>
+		
+		<img alt="Examples of self-oscillatory neuron ensembles" src="inc/SO-ESN/neuron_ensemble_long.png" width="600"/>
+		<span class="caption">Examples of self-oscillatory neuron ensembles. Edges in green indicate excitatory synapses, and edges in red indicate inhibitory synapses. (D) The ratio of selfoscillatory reservoirs successfully generated with and without predefined self-oscillatory neuron ensembles from (A)</span>
+		
+		<p>
+		In terms of model architecture, we found that weakly coupled sub-reservoirs can produce oscillations with significant variation. A fully connected reservoir tends to generate only phase-coupled oscillations, primarily because of the synchronization among the strongly coupled neurons. Interestingly, a reservoir composed of multiple sub-reservoirs can produce oscillations with various frequencies. The weak-coupling (weaker and sparse connection) between these sub-reservoirs enhance the chances of the entire reservoir generating oscillations with diverse frequencies. Note that the reason we need diversity in frequency is because we are essentially creating features out of thin air. Diversity in these features can assist downstream operations, like the readout layer, in performing better when doing linear combinations of the oscillations.
+		</p>
+		
+		<p>
+		Ultimately, we used the SO-ESN to reproduce the trajectories of complex dynamic systems. This was accomplished without any input into the reservoir. Only the readout layer was trained against the trajectories using the oscillation outputs from the reservoir. However, the trajectories did not extrapolate effectively, which will be a primary focus for our future work. Still, given no input to the reservoir, it can reproduce the trajectories with high frequency, given the randomly initialized reservoir are producing oscillation with diverse frequencies.
+		</p>
+		
+		<img alt="SO-ESN reproduces the trajectory of complex dynamical systems" src="inc/SO-ESN/complex_dynamic.png" width="800"/>
+		<span class="caption">SO-ESN reproduces the trajectory of complex dynamical systems. (A, B) SO-ESN can reproduce the trajectories of sinusoidal and square waves, and Lorenz chaotic time series with high precision, given oscillations with rich features produced by the self-oscillatory reservoir. The boxplot showed the optimal number of sub-reservoirs for a fixed population for both experiments.</span>
+		
+		<p>
+		Here is a quick video summary about this paper.
+		</p>
+		
+		<iframe src="https://www.youtube.com/embed/Y46QJx1Fc0Q?si=8iRZL0bL4Fj_4QW8"></iframe>
+		
+		<p>
+		In summary, we have developed a model that can produce spontaneous, self-sustaining rhythmic oscillations with varied waveforms, all without any external input or feedback. Our research has been published <a href="https://escholarship.org/uc/item/38t0b0cg">here</a>[2], and an oral presentation was delivered at CogSci 2023. You can access the paper through the provided link. I hope you find this research insightful!
+		</p>
+		
+		<img alt="Presentation at CogSci 2023" src="inc/SO-ESN/cogsci_6.png" width="800"/>
+		<span class="caption">Me giving a presentation of this research at CogSci 2023.</span>
+
+		<h3>References</h3>
+		<div id="reference-section">
+			<span>[1] Jaeger, Herbert. "Tutorial on training recurrent neural networks, covering BPPT, RTRL, EKF and the" echo state network" approach." (2002).</span>
+			<span>[2] Foong, Tham Yik, and Danilo Vasconcellos Vargas. "Generating Oscillation Activity with Echo State Network to Mimic the Behavior of a Simple Central Pattern Generator." arXiv preprint arXiv:2306.10927 (2023).</span>
+		</div>
+		
+		</div>
+		
+		<div class="section-divider">
+			<span>----------------------------------- End of Post ----------------------------------</span>
+		</div>
+		</section>
+
+		<div id="footer">
+			<p class="copyright-p">Copyright © 2023 <span style="color:#666;">Tham Yik Foong</span></p>
+		</div>
+	</div>
+</body>
+
+</html>
