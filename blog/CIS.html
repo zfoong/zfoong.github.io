@@ -1,0 +1,149 @@
+ <!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	
+	 <!-- Deisgned by
+	
+        
+    88888888888 888                                  Y88b   d88P d8b 888           8888888888                                  
+        888     888                                   Y88b d88P  Y8P 888           888                                         
+        888     888                                    Y88o88P       888           888                                         
+        888     88888b.   8888b.  88888b.d88b.          Y888P    888 888  888      8888888  .d88b.   .d88b.  88888b.   .d88b.  
+        888     888 "88b     "88b 888 "888 "88b          888     888 888 .88P      888     d88""88b d88""88b 888 "88b d88P"88b 
+        888     888  888 .d888888 888  888  888          888     888 888888K       888     888  888 888  888 888  888 888  888 
+        888     888  888 888  888 888  888  888          888     888 888 "88b      888     Y88..88P Y88..88P 888  888 Y88b 888 
+        888     888  888 "Y888888 888  888  888          888     888 888  888      888      "Y88P"   "Y88P"  888  888  "Y88888 
+                                                                                                                           888 
+                                                                                                                      Y8b d88P 
+                                                                                                                       "Y88P"  
+
+    # https://zfoong.github.io/
+
+	-->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A Github Profile Page">
+	<meta name="keywords" content="Tham Yik Foong, Github, Webpage">
+	<meta name="robots" content="index,follow">
+	<meta name="author" content="Tham Yik Foong" />
+	<title>Foong's Profile</title>
+	
+	<meta property="og:title" content="Foong's Profile" />
+	<meta property="og:description" content="A Github Profile Page" />
+	<meta property="og:type" content="article" />
+	<meta property="og:site_name" content="Foong's Profile" />
+	<meta property="og:image" content="graphic/type-icon.png" />
+	
+	<link rel="icon" type="../image/png" href="graphic/favicon.ico" />
+	<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">	
+	<link rel="stylesheet" href="../css/index.css" type="text/css">
+	<link rel="stylesheet" href="../css/post.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</head>
+	
+<body>
+	<div id="wrapper">
+		
+		<div class="section-divider"></div>
+		
+		<section id="link-section" class="section">
+			<a href="../blog.html">Blog</a>
+			<a href="../index.html">Home</a>
+			<a href="https://scholar.google.com/citations?user=Q24NWS4AAAAJ">Publication</a>
+			<a href="https://github.com/zfoong">Github</a>
+		</section>
+		
+		<section id="post-section" class="section">
+		<div class="section-divider">
+			<span>------------------------------------- Post ---------------------------------------</span>
+		</div>
+		
+		<div id="blog-post">
+		
+		<h1 id=post-title>Image generators struggle when generating multi-components images</h1>
+		
+		<img alt="Introduction" src="inc/CIS/introduction.png"/>
+		
+		<h2>Just Some Contexts</h2>
+
+		<p>
+		With the rapid advancement of conditional image generation, a field where image generators creates descriptive images with input like text descriptions (Text passed into the generator as condition), we are able to create visual content tailored to our requirement. 
+		</p>
+
+		<p>
+		However, image generators can face the challenge where they couldn’t generate image faithful to the text descriptions. This get worst when are many components included in the text. For example, given a prompt “<i>A picture of a bassoon, a typewriter keyboard, a go-kart, an American dipper, a chainsaw, a prayer rug, a burrito and a grey fox</i>”. As in 2023, a state-of-the-art open source model like stable diffussion cannot include 100% all the components in a single image. 
+		</p>
+		
+		<p>
+		Although the components are unlikely to happen together, a human would still try their best to fit everything in the image, not matter how incoherent they will be. Yet, neural network model still lack the robustness to handle such situation. So one point for human in this case. Therefore, the ability to construct a model that is faithful to its condition has become one of the metric to evaluate their generative capability. 
+		</p>
+		
+		<h2>Problem Statement</h2>
+		
+		<p>
+		The thing is, there isn’t an automatic way to determine if an image include all the components a part from visual inspection. We don’t want to gather a group of labours just to evaluate how well a model handle such case. Therefore, in this work, we developed a framework and a metric named Components Inclusion Score (CIS) to do the job for us. 
+		</p>
+		
+		<p>
+		In a nutshell, we prepare a list of prompts with <i>K</i> components (objects in image) in it. Then, we ask the image generator to generate a distribution of images according to the prompts. Followed by that, we use CLIP model to evaluate how well did the image generator incoporate all the components inside the images to output a CLIP Score for each image. Lastly, we use the CIS metric to calculate how well the image generator are doing across the list of prompts.
+		</p>
+		
+		<h2>Experiment and Result</h2>
+		
+		<p>In our experiment, we overloaded image generators like Stable Diffusion V2, Dall-e mini, AttnGAN, and GLIDE with various components, evaluating their performance using the CIS metric. Results (see Fig. 1) show that with fewer components, models generally produce images closely matching the input criteria. However, as component count increases, CIS scores drop, indicating a decline in the models' ability to accurately incorporate all requested components. Also see the generated images with the corresponding prompt in Fig. 2. It is obvious that the image generators don’t understand the mission here because a human would have fit all the components in it, regardless of the quality or whatsoever.</p>
+		
+		<img alt="CIS decline with increasing number of components" src="inc/CIS/plot.png"/>
+		<span class="caption">Fig.1 CIS decline with increasing number of components. This means that these tested models cannot generate all the components when they are too many of them in the conditioned text.</span>
+		
+		<img alt="Examples of image generated with the given prompt" src="inc/CIS/example_images.png"/>
+		<span class="caption">Fig.2 Examples of image generated with the given prompt.</span>
+		
+		<p>It is also worth noting that the stable diffusion V2 is the best-performing model, by the time of writing this paper. Aside from that, we also evaluated the output images distribution with IS and FID just to check their quality and diversity. The result following the general trend shown in the plot in Fig. 1, indicating that a better model is more faithful to the prompt while maintaining its quality. Furthermore, we fine-tuned a model on MCID to see if Data Distribution Expansion with Multi-Component Images could improve CIS. While it showed improvement, it did not address the root problem. </p>
+
+		<p>Interestingly, after completing this paper, Dall-E 3 and Midjourney V6 were released, demonstrating impressive multi-component generation capabilities. Too bad their are closed model and cannot be tested at this stage. </p>
+				
+		<img alt="Examples of image generated by Midjourney V6" src="inc/CIS/image_4.png"/>
+		<span class="caption">Fig.3 The prompt given to Midjourney V6: A photo of a throne, a cowboy hat, a lion, a shoe store, a tea cup, a carousel, a common gallinule and a cockroach.</span>
+		
+		<img alt="Examples of image generated by Midjourney V6" src="inc/CIS/image_3.png"/>
+		<span class="caption">Fig.4 The prompt given to Midjourney V6: A photo of a cleaver, a fig, a mousetrap and a wall clock.</span>
+		
+		<h2>Takeaway</h2>
+
+		<p>Perhaps the most useful takeaways from this post is: 
+			<ol>
+				<li>When training an image generator conditioned on text, include complex images with multiple components to expand its training data distribution.</li>
+				<li>Expanding training data distribution is merely a workaround; image generators need to adopt new techniques to be completely faithful to the text conditions and address the root problem.</li>
+			</ol>
+		</p>
+	
+
+
+		
+		<h3>References</h3>
+		<div id="reference-section">
+			<span>[1] Vargas, Danilo Vasconcellos, and Toshitake Asabuki. "Continual general chunking problem and syncmap." Proceedings of the AAAI Conference on Artificial Intelligence. Vol. 35. No. 11. 2021.</span>
+			<span>[2] Vargas, Danilo Vasconcellos, Tham Yik Foong, and Heng Zhang. "Dynamical Equations With Bottom-up Self-Organizing Properties Learn Accurate Dynamical Hierarchies Without Any Loss Function." arXiv preprint arXiv:2302.02140 (2023).</span>
+			<span>[3] Barack, David L., and John W. Krakauer. "Two views on the cognitive brain." Nature Reviews Neuroscience 22.6 (2021): 359-371.</span>
+		</div>
+		
+		</div>
+		
+		
+		
+		<div class="section-divider">
+			<span>----------------------------------- End of Post ----------------------------------</span>
+		</div>
+		</section>
+
+		<div id="footer">
+			<p class="copyright-p">Copyright © 2022 <span style="color:#666;">Tham Yik Foong</span></p>
+		</div>
+	</div>
+</body>
+
+</html>
