@@ -75,11 +75,11 @@
 		</p>
 
 		<p>
-		However, image generators can face the challenge where they couldn’t generate image faithful to the text descriptions. This get worst when are many components included in the text. For example, given a prompt “<i>A picture of a bassoon, a typewriter keyboard, a go-kart, an American dipper, a chainsaw, a prayer rug, a burrito and a grey fox</i>”. As in 2023, a state-of-the-art open source model like stable diffussion cannot include 100% all the components in a single image [1]. 
+		However, image generators can face the challenge where they couldn’t generate image faithful to the text descriptions. This get worst when there are many components/objects included in the text. For example, given a prompt “<i>A picture of a bassoon, a typewriter keyboard, a go-kart, an American dipper, a chainsaw, a prayer rug, a burrito and a grey fox</i>”. As in 2023, a state-of-the-art open source model like stable diffussion cannot include 100% all the components in a single image [1]. 
 		</p>
 		
 		<p>
-		Although the components are unlikely to happen together, a human would still try their best to fit everything in the image, not matter how incoherent they will be. Yet, neural network model still lack the robustness to handle such situation. So one point for human in this case. Therefore, the ability to construct a model that is faithful to its condition has become one of the metric to evaluate their generative capability. 
+		Although the components are unlikely to happen together, a human would still try their best to fit everything in the image, not matter how incoherent they will be. Yet, neural network model still lack the robustness to handle such situation. So one point for human in this case. Therefore, the ability to construct a model that is faithful to its condition has become one of the metrics to evaluate their generative capability. 
 		</p>
 		
 		<h2>Problem Statement</h2>
@@ -94,7 +94,7 @@
 		
 		<h2>Experiment and Result</h2>
 		
-		<p>In our experiment, we overloaded image generators like Stable Diffusion V2, Dall-e mini, AttnGAN, and GLIDE with various components, evaluating their performance using the CIS metric. Results (see Fig. 1) show that with fewer components, models generally produce images closely matching the input criteria. However, as component count increases, CIS scores drop, indicating a decline in the models' ability to accurately incorporate all requested components. Also see the generated images with the corresponding prompt in Fig. 2. It is obvious that the image generators don’t understand the mission here because a human would have fit all the components in it, regardless of the quality or whatsoever.</p>
+		<p>In our experiment, we overloaded image generators like Stable Diffusion V2, Dall-e mini, AttnGAN, and GLIDE with various components, evaluating their performance using the CIS metric. Results (see Fig. 1) show that with fewer components, models generally produce images closely matching the input criteria. However, as component count increases, CIS scores drop, indicating a decline in the models' ability to accurately incorporate all requested components. Also see the generated images with the corresponding prompt in Fig. 2. It is obvious that the image generators don’t understand the mission here because a human would have fit all the components in it, regardless of the quality or whatsoever (e.g., if we are given a hundred components, we will draw them as tiny as possible and place them side by side to fit them all in the image).</p>
 		
 		<img alt="CIS decline with increasing number of components" src="inc/CIS/plot.png"/>
 		<span class="caption">Fig.1 CIS decline with increasing number of components. This means that these tested models cannot generate all the components when they are too many of them in the conditioned text.</span>
