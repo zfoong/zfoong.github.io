@@ -1,0 +1,162 @@
+ <!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+	
+	 <!-- Deisgned by
+	
+        
+    88888888888 888                                  Y88b   d88P d8b 888           8888888888                                  
+        888     888                                   Y88b d88P  Y8P 888           888                                         
+        888     888                                    Y88o88P       888           888                                         
+        888     88888b.   8888b.  88888b.d88b.          Y888P    888 888  888      8888888  .d88b.   .d88b.  88888b.   .d88b.  
+        888     888 "88b     "88b 888 "888 "88b          888     888 888 .88P      888     d88""88b d88""88b 888 "88b d88P"88b 
+        888     888  888 .d888888 888  888  888          888     888 888888K       888     888  888 888  888 888  888 888  888 
+        888     888  888 888  888 888  888  888          888     888 888 "88b      888     Y88..88P Y88..88P 888  888 Y88b 888 
+        888     888  888 "Y888888 888  888  888          888     888 888  888      888      "Y88P"   "Y88P"  888  888  "Y88888 
+                                                                                                                           888 
+                                                                                                                      Y8b d88P 
+                                                                                                                       "Y88P"  
+
+    # https://zfoong.github.io/
+
+	-->
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A Github Profile Page">
+	<meta name="keywords" content="Tham Yik Foong, Github, Webpage">
+	<meta name="robots" content="index,follow">
+	<meta name="author" content="Tham Yik Foong" />
+	<title>Foong's Profile</title>
+	
+	<meta property="og:title" content="Foong's Profile" />
+	<meta property="og:description" content="A Github Profile Page" />
+	<meta property="og:type" content="article" />
+	<meta property="og:site_name" content="Foong's Profile" />
+	<meta property="og:image" content="graphic/type-icon.png" />
+	
+	<link rel="icon" type="../image/png" href="graphic/favicon.ico" />
+	<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">	
+	<link rel="stylesheet" href="../css/index.css" type="text/css">
+	<link rel="stylesheet" href="../css/post.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+</head>
+	
+<body>
+	<div id="wrapper">
+		
+		<div class="section-divider"></div>
+		
+		<section id="link-section" class="section">
+			<a href="../blog.html">Blog</a>
+			<a href="../index.html">Home</a>
+			<a href="https://scholar.google.com/citations?user=Q24NWS4AAAAJ">Publication</a>
+			<a href="https://github.com/zfoong">Github</a>
+		</section>
+		
+		<section id="post-section" class="section">
+		<div class="section-divider">
+			<span>------------------------------------- Post ---------------------------------------</span>
+		</div>
+		
+		<div id="blog-post">
+		
+		<h1 id=post-title>Dev Blog Takomori 1.0: <br/> A New Way of Learning?</h1>
+		
+		<p>I finally have a completed MVP after some grinding. Since the <a href="https://zfoong.github.io/blog/takomori-dev-0.html">previous dev blog</a>, many things have changed—from the interface and features to the way the prerequisite graph is structured. So let’s see how the MVP currently looks.</p>
+
+		<h2>Prerequisite Knowledge Graph Update</h2>
+
+		<p>First, let’s go through how the prerequisite knowledge graph (PKG) has changed. In case you don’t know what a prerequisite knowledge graph (PKG) is, feel free to check out the <a href="https://zfoong.github.io/blog/prerequisite-knowledge-graph.html">previous post</a> to understand the concept. As the name suggests, it is a knowledge graph where nodes (knowledge, topics, concepts) are connected via prerequisite relationships. You can think of it as a tech tree in a game, but for knowledge.</p>
+
+		<p>The graph’s architecture has been updated since then. Now, the graph has two types of nodes: topic nodes and subject nodes. </p>
+
+		<ul>
+			<li>Topic nodes store specific, atomic units of knowledge, topics that cannot be broken down into smaller topics. </li>
+			<li>Subject nodes store broader fields that encompass multiple related topics (e.g., Machine Learning, Physics, Calculus). They serve as composite nodes in the graph, grouping related topics together. In most scenarios, subject nodes act like topic nodes. However, to ‘master’ a subject node, one must learn all the topic nodes assigned under it.</li>
+		</ul>
+		
+		<p>The subject node is implemented but does not yet display all its child nodes because the number of nodes can be overwhelming. For example, a subject like physics contains many topics, and displaying all of them at once can be overwhelming to user and computationally heavy. Methods to manage and display them efficiently are still under development. You can see the properties and rules of PKG in the figure below.</p>
+		
+		<img alt="Rules of PKG" src="inc/takomori-dev-1/rules_of_PKG_plus.PNG"/>	
+		<span class="caption">Rules of Prerequisite Knowledge Graph</span>
+		
+		<p>Topics/subjects have different states:</p>
+		<ul>
+			<li>Topics/subjects you have not started learning are shown in gray.</li>
+			<li>Topics/subjects you are currently learning are shown in orange.</li>
+			<li>Topics/subjects you have mastered are shown in green.</li>
+		</ul>
+		
+		<p>To prove users have mastered a topic or subject, they must complete a test for topic nodes and master all topic nodes under a subject node to master the subject itself.</p>
+		<p>I have also planned out new edge types. In addition to prerequisites, I am planning to add ‘optional prerequisites’, which are not required to advance but can greatly help in understanding a topic, and ‘part of’ edges, which define topics as components of a subject.</p>
+		
+		<h2>Rules for Constructing the PKG</h2>
+		
+		<p>To maintain consistency, I have imposed some general rules when constructing the graph.</p>
+		
+		<h3>Rules for Adding Topics:</h3>
+		
+		<ul>
+			<li>Atomicity: Each topic must represent the smallest indivisible concept and must not combine multiple topics.</li>
+			<li>Uniqueness and Clarity: Each topic name must be unique, unambiguous, and clearly defined.</li>
+			<li>Granularity: Topics should be specific, neither too broad nor too narrow, representing essential foundational knowledge. </li>
+			<li>Exclusion of Non-Topics: Practical skills, tools, general competencies, or broad subjects should not be considered as topic. One must focus on theoretical concepts only, although this might be changed in the future.</li>
+		</ul>
+		
+		<h3>Rules for Edges:</h3>
+		
+		<ul>
+			<li>Direct and Essential Prerequisites: Topics must be direct prerequisites of the provided term and not merely related, they must be essential for understanding the term. They must not simply be related, and they must not be prerequisites in reverse.</li>
+			<li>No Cycles in the Graph: The PKG is a directed acyclic graph, meaning it cannot have loops or circular connections. This prevents situations where a topic becomes a prerequisite for one of its own prerequisites, preventing “chicken-and-egg” problems.</li>
+			<li>Optional Prerequisites: Some topics have optional prerequisites, which are not mandatory but help in gaining a deeper understanding.</li>
+			<li>Simplified Prerequisite Links: When two topics share the same prerequisite, only the direct prerequisite is shown. For example, if Topic C depends on Topic B, and both rely on Topic A, only the links between A → B and B → C will be displayed. The relationship can still be stored in the graph database, to ensure robustness when topics are being removed.</li>
+		</ul>
+		
+		
+		<h2>Prerequisite Knowledge Graph (Content)</h2>
+		
+		<p>Currently, the PKG content focuses mostly on AI and a bit of math, which is subjects I know a little bit of and can validate. In the previous post, I mentioned that “this project can potentially encapsulate all human knowledge.” Welp, I take that back. I realized that not all topics require prerequisite knowledge, for example, subject like history, so they aren’t suitable for mastery learning. However, STEM subjects heavily rely on prerequisites, so building a PKG that focuses on STEM has become my priority.</p>
+		
+		<p>There are still many concerns to address. For example:</p>
+		
+		<ul>
+			<li>How do we define ‘knowing’ a topic?</li>
+			<li>Since concepts vary in difficulty, how do we break them down effectively?</li>
+			<li>Some topics are best learned together, so how do we group them while still treating them as separate prerequisites?</li>
+			<li>Should we linearize the learning process, similar to how Duolingo transitioned from a tree structure to a linear format? If we strictly follow prerequisite rules, graphs will have fewer layers but more topics per layer, which could cause confusion and reduce the sense of progression (also not that nice visually).</li>
+		</ul>
+		
+		<p>I am not an expert in pedagogy, I am just a software developer with a preference for this kind of learning method. If anyone has ideas on improving PKG structure and definition, feel free to reach out for discussion.</p>
+		
+		<h2>Takomori (The Interface)</h2>
+		
+		<p>Of course, we have an interface to allow users to access the PKG (<a href="http://takomori.com/">visit the website here</a>). Honestly, it is far from being fully usable. However, I can’t wait to let people try it out, so I decided to roll it out as soon as possible. The previous MVP only supported guest mode. Now, users can log in to track their learning progress, take tests for validation, and follow specific graphs of interest.</p>
+		
+		<p>One of my favorite features is the dashboard and My Tree function. The My Tree section displays all the topics you’ve learned, visually representing your knowledge growth like a tree (good luck growing your own knowledge tree!).</p>
+		
+		<p>I have planned to implement gamification, but that will have to wait for the next phase. For now, there is a simple leveling system, where you earn experience by completing training and trials. As for what levels will be used for, I’m still thinking about it.</p>
+		
+		<h2>Conclusion</h2>
+		
+		<p>That’s it for this dev blog. There is still a long way to go (e.g. gamifying of the learning process), creating a graph editor for collaborative topic and prerequisite contributions, and even allowing users to build their own private PKGs.</p>
+		
+		<p>PKG and Takomori still have a long journey ahead. Yet, I’m excited about the progress so far and excited to see how this tool can improve learning experiences. If you are interested in this approach or want to help build the PKG, please contact me or join our community Discord.</p>
+		
+		</div>
+		
+		<div class="section-divider">
+			<span>----------------------------------- End of Post ----------------------------------</span>
+		</div>
+		</section>
+
+		<div id="footer">
+			<p class="copyright-p">Copyright © 2025 <span style="color:#666;">Tham Yik Foong</span></p>
+		</div>
+	</div>
+</body>
+
+</html>

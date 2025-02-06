@@ -13,8 +13,8 @@
 	align-items: flex-start;
 	justify-content: flex-start;
 	padding:24px 24px !important;
-	border-radius: 25px;
-	box-shadow: 1px 5px 10px 10px #dbdbdb;
+	border-radius: 5px;
+	border: 1px solid;
 	width:100%;
 	min-height: 198px;
 	
